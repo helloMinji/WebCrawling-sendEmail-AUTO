@@ -12,7 +12,7 @@ options.add_argument("disable-gpu") #이게 안될 경우 options.add_argument("
 
 # 사이트 열기
 driver = webdriver.Chrome('chromedriver가 설치된 경로', chrome_options=options)
-driver.get('http://portfolio.ericsson.net') #인트라넷이지만 뜬다
+driver.get('웹사이트 주소') #인트라넷을 이용했었는데, 잘 실행됨
 time.sleep(10) #화면이 뜨기 위한 대기시간
 
 # 로그인
@@ -129,7 +129,7 @@ if len(needsend_index)!=0:
     mail = outlook.CreateItem(0)
     mail.To = '받는 사람 메일 주소(여러명일 경우 ;로 구분)'
     #mail.CC = '참조할 사람 메일 주소'
-    mail.Subject = 'Ericsson Radio System 업데이트 파일 확인' #제목
+    mail.Subject = '제목' #제목
 
     body = "다음의 파일이 업데이트 되었습니다. \n\n\n"
     for i in needsend_index:
@@ -139,7 +139,8 @@ if len(needsend_index)!=0:
     mail.Body = body
 
     for i in needsend_index:
-        mail.Attachments.Add('https://portfolio.ericsson.net/Main-Catalog/Networks/Ericsson-Radio-System/c/'+ppt_list[i])
+        mail.Attachments.Add('주소'+ppt_list[i])
+        # 첨부파일이 있는 주소. 파일이 모두 같은 웹페이지에 있기 때문에 앞부분 주소가 동일하여 '주소'로 처리해주었다.
         # 첨부파일을 open해야 save를 위한 새로운 웹페이지가 열린다.
 
     mail.Send()
